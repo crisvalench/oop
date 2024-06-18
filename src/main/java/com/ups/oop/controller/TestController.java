@@ -14,18 +14,37 @@ public class TestController {
     }
 
     @GetMapping("/hello")
-    public String hello(@RequestParam String name,
+    public String hello(@RequestParam(required = false) String name,
                         @RequestParam(required = false) String lastname,
                         @RequestParam(required = false) Integer age) {
 
-        if (age != null) {
-            return "This is my first rest service!, and my name is: " + name + " " + lastname + " and I'm " + age + " years old." ;
-        } else if (lastname == null)
-            return "This is my first rest service!, and my name is: " + name ;
-        else {
-            return "This is my first rest service!, and my name is: "
-                    + name + " " + lastname  ;
+        if (name != null & lastname != null & age != null){
+            return "This is my first rest service and my name is: " + name + " " + lastname + " and my age is " + age + " years old.";
         }
+        if (name != null & lastname != null) {
+            return "This is my first rest service and my name is: " + name + " " + lastname ;
+        }
+        if (name != null & age  != null) {
+            return "This is my first rest service and my name is: " + name + " and my age is " + age + " years old.";
+        }
+        if (lastname != null & age  != null) {
+            return "This is my first rest service and my lastname is: " + lastname + " and my age is " + age + " years old.";
+        }
+        if (name != null) {
+            return "This is my first rest service! and my name is: " +name ;
+        }
+        if (lastname != null) {
+            return "This is my first rest service!, and my lastname is: " + lastname ;
+        }
+        if (age != null){
+            return "This is my first rest service!, and my age is " + age;
+        }
+        return "This is my first rest service!" ;
+    }
+
+    @GetMapping("/concat")
+    public String concatenate(){
+        return "This is my second rest service!";
     }
 
     @GetMapping("/concat/{name}")
