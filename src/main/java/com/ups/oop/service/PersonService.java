@@ -20,13 +20,24 @@ public class PersonService {
         return personList;
     }
 
-    public Person getPersonById(String id){
-        Person person = new Person ();
-        for(Person per : personList){
-            if (id.equalsIgnoreCase(per.getId())){
+    public Person getPersonById(String id) {
+        Person person = new Person();
+        for (Person per : personList) {
+            if (id.equalsIgnoreCase(per.getId())) {
                 return per;
             }
         }
         return person;
+    }
+
+    public String detelePersonById(String id) {
+        String message = "Person with id " + id;
+        for (Person per : personList) {
+            if (id.equalsIgnoreCase(per.getId())) {
+                personList.remove(per);
+                return message + " removed successufuly";
+            }
+        }
+        return message + " not found";
     }
 }
