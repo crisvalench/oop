@@ -3,8 +3,12 @@ package com.ups.oop.controller;
 import com.ups.oop.PooApplication;
 import com.ups.oop.dto.Person;
 import com.ups.oop.service.PersonService;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @RestController
@@ -15,19 +19,19 @@ public class PersonController {
         this.personService = personService;
     }
 
+    @PostMapping("/person")
+    public ResponseEntity createPerson(@RequestBody Person person){
+        return this.personService.createPerson(person);
+    }
+
     @GetMapping("/get-all-people")
-    public List<Person> getAllPeople(){
+    public ResponseEntity getAllPeople(){
         return this.personService.getAllPeople();
     }
 
     @GetMapping("/get-person")
-    public Person getPersonById(@RequestParam String id){
+    public ResponseEntity getPersonById(@RequestParam String id){
         return this.personService.getPersonById(id);
-    }
-
-    @PostMapping("/person")
-    public Person createPerson(@RequestBody Person person){
-        return this.personService.createPerson(person);
     }
 
     @PutMapping("/update-person")
