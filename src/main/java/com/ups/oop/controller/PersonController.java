@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 public class PersonController {
-    private final PersonService personService;
+    private final PersonService personService; //Inyeccion de dependecia mediante un constructor
 
     public PersonController(PersonService personService) {
         this.personService = personService;
@@ -35,12 +35,12 @@ public class PersonController {
     }
 
     @PutMapping("/update-person")
-    public Person updatePerson(@RequestBody Person person){
+    public ResponseEntity updatePerson(@RequestBody Person person){
         return this.personService.updatePerson(person);
     }
 
     @DeleteMapping("/remove-person")
-    public String deletePerson(@RequestParam String id){
+    public ResponseEntity deletePerson(@RequestParam String id){
         return this.personService.detelePersonById(id);
     }
 }
