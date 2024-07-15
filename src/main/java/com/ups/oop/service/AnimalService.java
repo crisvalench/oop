@@ -1,6 +1,6 @@
 package com.ups.oop.service;
 
-import com.ups.oop.dto.Animal;
+import com.ups.oop.dto.AnimalDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,22 +10,22 @@ import java.util.List;
 
 @Service
 public class AnimalService {
-    private List<Animal> animalList = new ArrayList<>();
+    private List<AnimalDTO> animalDTOList = new ArrayList<>();
 
-    public ResponseEntity createAnimal(Animal animal) {
-        boolean wasFound = findAnimal(animal.getId());
+    public ResponseEntity createAnimal(AnimalDTO animalDTO) {
+        boolean wasFound = findAnimal(animalDTO.getId());
         if (wasFound) {
-            String errorMessage = "Animal with id " + animal.getId() + " already exists.";
+            String errorMessage = "Animal with id " + animalDTO.getId() + " already exists.";
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         } else {
-            animalList.add(animal);
-            return ResponseEntity.status(HttpStatus.OK).body(animal);
+            animalDTOList.add(animalDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(animalDTO);
         }
     }
 
         private boolean findAnimal (String id){
-            for (Animal animal : animalList) {
-                if (id.equalsIgnoreCase(animal.getId())) {
+            for (AnimalDTO animalDTO : animalDTOList) {
+                if (id.equalsIgnoreCase(animalDTO.getId())) {
                     return true;
                 }
             }
@@ -33,14 +33,14 @@ public class AnimalService {
         }
 
     public ResponseEntity getAllAnimals() {
-        if(animalList.isEmpty()){
+        if(animalDTOList.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal List not found");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(animalList);
+        return ResponseEntity.status(HttpStatus.OK).body(animalDTOList);
     }
 
     public ResponseEntity getAnimalById(String id) {
-        for (Animal anim : animalList) {
+        for (AnimalDTO anim : animalDTOList) {
             if (id.equalsIgnoreCase(anim.getId())) {
                 return ResponseEntity.status(HttpStatus.OK).body(anim);
             }
@@ -51,7 +51,7 @@ public class AnimalService {
 
     private int findIndexById(String id){
         int index = 0;
-        for(Animal a : animalList){
+        for(AnimalDTO a : animalDTOList){
             if(id.equalsIgnoreCase(a.getId())){
                 return index;
             }
@@ -60,20 +60,20 @@ public class AnimalService {
         return -1;
     }
 
-    public ResponseEntity updateAnimal(Animal animal){
-        int updateIndex = findIndexById(animal.getId());
+    public ResponseEntity updateAnimal(AnimalDTO animalDTO){
+        int updateIndex = findIndexById(animalDTO.getId());
         if(updateIndex != -1) {
-            animalList.set(updateIndex, animal);
-            return ResponseEntity.status(HttpStatus.OK).body(animal);
+            animalDTOList.set(updateIndex, animalDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(animalDTO);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal with id " + animal.getId() + " doesn't exits");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal with id " + animalDTO.getId() + " doesn't exits");
     }
 
     public ResponseEntity deteleAnimalById(String id) {
         String message = "Animal with id " + id;
-        for (Animal anim : animalList) {
+        for (AnimalDTO anim : animalDTOList) {
             if (id.equalsIgnoreCase(anim.getId())) {
-                animalList.remove(anim);
+                animalDTOList.remove(anim);
                 return ResponseEntity.status(HttpStatus.OK).body(message + " removed successufuly");
             }
         }
