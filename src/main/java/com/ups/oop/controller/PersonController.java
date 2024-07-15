@@ -1,6 +1,6 @@
 package com.ups.oop.controller;
 
-import com.ups.oop.dto.Person;
+import com.ups.oop.dto.PersonDTO;
 import com.ups.oop.service.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,8 +21,8 @@ public class PersonController {
     }
 
     @PostMapping("/person")
-    public ResponseEntity createPerson(@RequestBody Person person){
-        return this.personService.createPerson(person);
+    public ResponseEntity createPerson(@RequestBody PersonDTO personDTO){
+        return this.personService.createPerson(personDTO);
     }
 
     @GetMapping("/get-all-people")
@@ -36,8 +36,8 @@ public class PersonController {
     }
 
     @PutMapping("/update-person")
-    public ResponseEntity updatePerson(@RequestBody Person person){
-        return this.personService.updatePerson(person);
+    public ResponseEntity updatePerson(@RequestBody PersonDTO personDTO){
+        return this.personService.updatePerson(personDTO);
     }
 
     @DeleteMapping("/remove-person")
