@@ -1,6 +1,8 @@
 package com.ups.oop.service;
 
 import com.ups.oop.dto.AnimalDTO;
+import com.ups.oop.entity.Animal;
+import com.ups.oop.repository.AnimalRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,12 @@ import java.util.List;
 
 @Service
 public class AnimalService {
+    private final AnimalRepository animalRepository;
     private List<AnimalDTO> animalDTOList = new ArrayList<>();
+
+    public AnimalService(AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
+    }
 
     public ResponseEntity createAnimal(AnimalDTO animalDTO) {
         boolean wasFound = findAnimal(animalDTO.getId());
@@ -33,10 +40,19 @@ public class AnimalService {
         }
 
     public ResponseEntity getAllAnimals() {
-        if(animalDTOList.isEmpty()){
+
+        Iterable<Animal> animalIterable = animalRepository.findAll();
+        List<AnimalDTO> animalsList = new ArrayList<>();
+
+        for(Animal anim : animalIterable){
+            AnimalDTO animal = new AnimalDTO(anim.getAnimalId(),anim.getName(),anim.getBreath(),anim.getColor(),anim.getWeight(), anim.getHeight(), anim.getLength());
+            animalsList.add(animal);
+        }
+
+        if(animalsList.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal List not found");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(animalDTOList);
+        return ResponseEntity.status(HttpStatus.OK).body(animalsList);
     }
 
     public ResponseEntity getAnimalById(String id) {

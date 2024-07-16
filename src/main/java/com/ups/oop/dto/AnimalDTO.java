@@ -17,7 +17,7 @@ public class AnimalDTO {
     private String name;
     private String breath; //bread
     private String color;
-    private double weight;
-    private double height;
-    private double length;
+    private Double weight;
+    private Double height;
+    private Double length;
 }
