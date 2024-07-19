@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalService {
@@ -45,7 +46,11 @@ public class AnimalService {
         List<AnimalDTO> animalsList = new ArrayList<>();
 
         for(Animal anim : animalIterable){
-            AnimalDTO animal = new AnimalDTO(anim.getAnimalId(),anim.getName(),anim.getBreed(),anim.getColor(),anim.getWeight(), anim.getHeight(), anim.getLength());
+            AnimalDTO animal = new AnimalDTO();
+            animal.setAnimalCode(anim.getName() + "-" + anim.getBreed() + "-" + anim.getColor());
+            animal.setWeight(anim.getWeight());
+            animal.setHeight(anim.getHeight());
+            animal.setLength(anim.getLength());
             animalsList.add(animal);
         }
 
@@ -56,13 +61,20 @@ public class AnimalService {
     }
 
     public ResponseEntity getAnimalById(String id) {
-        for (AnimalDTO anim : animalDTOList) {
-            if (id.equalsIgnoreCase(anim.getId())) {
-                return ResponseEntity.status(HttpStatus.OK).body(anim);
-            }
+        Optional<Animal> animalOptional = animalRepository.findById(Long.valueOf(id));
+
+        if(animalOptional.isPresent()){
+            Animal animalFound = animalOptional.get();
+            AnimalDTO animal = new AnimalDTO(animalFound.getAnimalId(),
+                    animalFound.getName() + "-" + animalFound.getBreed() + "-" + animalFound.getColor(),
+                    animalFound.getWeight(),
+                    animalFound.getHeight(),
+                    animalFound.getLength());
+            return ResponseEntity.status(HttpStatus.OK).body(animal);
+        }else{
+            String errorMessage = "Animal with id " + id + " not found.";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
-        String errorMessage = "Animal with id " + id + " not found.";
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 
     private int findIndexById(String id){
