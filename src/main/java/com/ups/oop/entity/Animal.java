@@ -21,7 +21,7 @@ public class Animal {
     private Long id; //Similar a String pero abarca mas espacio
     private String animalId;
     private String name;
-    private String breath; //bread
+    private String breed; //breed
     private String color;
     private double weight;
     private double height;
