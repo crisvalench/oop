@@ -21,7 +21,7 @@ public class BootStrapData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         //Person
         Person person1 = new Person();
-        person1.setPersonId("0954278795");
+        person1.setPersonId("0954248795");
         person1.setName("Cristina");
         person1.setLastname("Valenzuela");
         person1.setAge(21);
@@ -39,7 +39,7 @@ public class BootStrapData implements CommandLineRunner {
         Animal animal1 = new Animal();
         animal1.setAnimalId("1ab");
         animal1.setName("Alana");
-        animal1.setBreath("Huskey");
+        animal1.setBreed("Huskey");
         animal1.setColor("White");
         animal1.setWeight(15.5);
         animal1.setHeight(25);
@@ -48,7 +48,7 @@ public class BootStrapData implements CommandLineRunner {
         Animal animal2 = new Animal();
         animal2.setAnimalId("2ab");
         animal2.setName("Apolo");
-        animal2.setBreath("Yorkie");
+        animal2.setBreed("Yorkie");
         animal2.setColor("Black and Brown");
         animal2.setWeight(3.5);
         animal2.setHeight(5);
