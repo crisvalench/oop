@@ -4,6 +4,7 @@ import com.ups.oop.entity.Animal;
 import com.ups.oop.entity.Person;
 import com.ups.oop.repository.AnimalRepository;
 import com.ups.oop.repository.PersonRepository;
+import com.ups.oop.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +12,13 @@ import org.springframework.stereotype.Component;
 public class BootStrapData implements CommandLineRunner {
     private final PersonRepository personRepository;
     private final AnimalRepository animalRepository;
+    private final StudentRepository studentReporsitory;
 
-    public BootStrapData(PersonRepository personRepository, AnimalRepository animalRepository) {
+
+    public BootStrapData(PersonRepository personRepository, AnimalRepository animalRepository, StudentRepository studentRepository) {
         this.personRepository = personRepository;
         this.animalRepository = animalRepository;
+        this.studentReporsitory = studentRepository;
     }
 
     @Override
