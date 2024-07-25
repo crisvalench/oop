@@ -2,6 +2,7 @@ package com.ups.oop.bootstrap;
 
 import com.ups.oop.entity.Animal;
 import com.ups.oop.entity.Person;
+import com.ups.oop.entity.Student;
 import com.ups.oop.repository.AnimalRepository;
 import com.ups.oop.repository.PersonRepository;
 import com.ups.oop.repository.StudentRepository;
@@ -59,8 +60,18 @@ public class BootStrapData implements CommandLineRunner {
         animalRepository.save(animal1);
         animalRepository.save(animal2);
 
+        //Student
+
+        Student student1 = new Student();
+        student1.setStudentId("123");
+        student1.setName("María");
+        student1.setLastname("Ramirez");
+
+        studentReporsitory.save(student1);
+
         System.out.println("--------- Started BootstrapData ---------");
         System.out.println("Number of Person: " +personRepository.count());
         System.out.println("Number of Animal: " +animalRepository.count());
+        System.out.println("Number of Student: " +studentReporsitory.count());
     }
 }
