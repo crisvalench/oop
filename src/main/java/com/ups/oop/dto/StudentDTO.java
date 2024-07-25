@@ -11,8 +11,9 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
+
 public class StudentDTO {
-    private String id;
     private String student_code;
     private String  name;
+    private String lastname;
 }

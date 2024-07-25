@@ -25,12 +25,12 @@ public class StudentController {
     }
 
     @GetMapping("/get-student")
-    public ResponseEntity getPersonById(@RequestParam String id){
+    public ResponseEntity getStudentById(@RequestParam String id){
         return this.studentService.getStudentById(id);
     }
 
     @PutMapping("/update-student")
-    public ResponseEntity updatePerson(@RequestBody StudentDTO studentDTO){
+    public ResponseEntity updateStudent(@RequestBody StudentDTO studentDTO){
         return this.studentService.updateStudent(studentDTO);
     }
 
