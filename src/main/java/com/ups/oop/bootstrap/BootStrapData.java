@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 public class BootStrapData implements CommandLineRunner {
     private final PersonRepository personRepository;
     private final AnimalRepository animalRepository;
-    private final StudentRepository studentReporsitory;
+//    private final StudentRepository studentReporsitory;
 
 
     public BootStrapData(PersonRepository personRepository, AnimalRepository animalRepository, StudentRepository studentRepository) {
         this.personRepository = personRepository;
         this.animalRepository = animalRepository;
-        this.studentReporsitory = studentRepository;
+//        this.studentReporsitory = studentRepository;
     }
 
     @Override
@@ -62,16 +62,16 @@ public class BootStrapData implements CommandLineRunner {
 
         //Student
 
-        Student student1 = new Student();
-        student1.setStudentId("123");
-        student1.setName("María");
-        student1.setLastname("Ramirez");
-
-        studentReporsitory.save(student1);
+//        Student student1 = new Student();
+//        student1.setStudentId("123");
+//        student1.setName("María");
+//        student1.setLastname("Ramirez");
+//
+//        studentReporsitory.save(student1);
 
         System.out.println("--------- Started BootstrapData ---------");
         System.out.println("Number of Person: " +personRepository.count());
         System.out.println("Number of Animal: " +animalRepository.count());
-        System.out.println("Number of Student: " +studentReporsitory.count());
+//        System.out.println("Number of Student: " +studentReporsitory.count());
     }
 }

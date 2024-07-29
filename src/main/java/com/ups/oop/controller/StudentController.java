@@ -1,6 +1,5 @@
 package com.ups.oop.controller;
 
-import com.ups.oop.dto.PersonDTO;
 import com.ups.oop.dto.StudentDTO;
 import com.ups.oop.service.StudentService;
 import org.springframework.http.ResponseEntity;
