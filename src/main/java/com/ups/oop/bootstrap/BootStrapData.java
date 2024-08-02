@@ -37,8 +37,15 @@ public class BootStrapData implements CommandLineRunner {
         person2.setLastname("Chachipanta");
         person2.setAge(22);
 
+        Person person3 = new Person();
+        person3.setPersonId("0960459076");
+        person3.setName("Omayra");
+        person3.setLastname("Alvarado");
+        person3.setAge(21);
+
         personRepository.save(person1);
         personRepository.save(person2);
+        personRepository.save(person3);
 
         //Animals
         Animal animal1 = new Animal();
