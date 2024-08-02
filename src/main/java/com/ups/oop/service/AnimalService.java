@@ -42,9 +42,17 @@ public class AnimalService {
 
     public ResponseEntity getAllAnimals() {
 
+        List<AnimalDTO> animalsList = getAnimals();
+
+        if(animalsList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal List not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(animalsList);
+    }
+//TemplateController
+    public List<AnimalDTO> getAnimals() {
         Iterable<Animal> animalIterable = animalRepository.findAll();
         List<AnimalDTO> animalsList = new ArrayList<>();
-
         for(Animal anim : animalIterable){
             AnimalDTO animal = new AnimalDTO();
             animal.setAnimalCode(anim.getName() + "-" + anim.getBreed() + "-" + anim.getColor());
@@ -53,11 +61,7 @@ public class AnimalService {
             animal.setLength(anim.getLength());
             animalsList.add(animal);
         }
-
-        if(animalsList.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal List not found");
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(animalsList);
+        return animalsList;
     }
 
     public ResponseEntity getAnimalById(String id) {
