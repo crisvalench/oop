@@ -56,6 +56,7 @@ public class AnimalService {
         for(Animal anim : animalIterable){
             AnimalDTO animal = new AnimalDTO();
             animal.setAnimalCode(anim.getName() + "-" + anim.getBreed() + "-" + anim.getColor());
+            animal.setPetName(anim.getPetName());
             animal.setWeight(anim.getWeight());
             animal.setHeight(anim.getHeight());
             animal.setLength(anim.getLength());
@@ -69,8 +70,9 @@ public class AnimalService {
 
         if(animalOptional.isPresent()){
             Animal animalFound = animalOptional.get();
-            AnimalDTO animal = new AnimalDTO(animalFound.getAnimalId(),
+            AnimalDTO animal = new AnimalDTO(
                     animalFound.getName() + "-" + animalFound.getBreed() + "-" + animalFound.getColor(),
+                    animalFound.getPetName(),
                     animalFound.getWeight(),
                     animalFound.getHeight(),
                     animalFound.getLength());

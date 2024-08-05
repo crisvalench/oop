@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>People List</title>
+    <title>Animals List</title>
     <style>
         table , th, td {
         border: 1px solid black;
@@ -41,7 +41,7 @@
         <th>Length</th>
     </tr>
     <tr th:each="anim: ${animals}">
-        <th th:text="${anim.animalCode}"></th>
+        <th th:text="${anim.petName} + ' : ' + ${anim.animalCode}"></th>
         <th th:text="${anim.weight}"></th>
         <th th:text="${anim.height}"></th>
         <th th:text="${anim.length}"></th>
