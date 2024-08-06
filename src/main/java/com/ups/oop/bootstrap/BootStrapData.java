@@ -1,11 +1,7 @@
 package com.ups.oop.bootstrap;
 
-import com.ups.oop.entity.Animal;
-import com.ups.oop.entity.Person;
-import com.ups.oop.entity.Student;
-import com.ups.oop.repository.AnimalRepository;
-import com.ups.oop.repository.PersonRepository;
-import com.ups.oop.repository.StudentRepository;
+import com.ups.oop.entity.*;
+import com.ups.oop.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +9,17 @@ import org.springframework.stereotype.Component;
 public class BootStrapData implements CommandLineRunner {
     private final PersonRepository personRepository;
     private final AnimalRepository animalRepository;
-//    private final StudentRepository studentReporsitory;
+    private final StudentRepository studentRepository;
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
 
 
-    public BootStrapData(PersonRepository personRepository, AnimalRepository animalRepository, StudentRepository studentRepository) {
+    public BootStrapData(PersonRepository personRepository, AnimalRepository animalRepository, StudentRepository studentRepository, AuthorRepository authorRepository, BookRepository bookRepository) {
         this.personRepository = personRepository;
         this.animalRepository = animalRepository;
-//        this.studentReporsitory = studentRepository;
+        this.studentRepository = studentRepository;
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -81,16 +81,65 @@ public class BootStrapData implements CommandLineRunner {
 
         //Student
 
-//        Student student1 = new Student();
-//        student1.setStudentId("123");
-//        student1.setName("María");
-//        student1.setLastname("Ramirez");
-//
-//        studentReporsitory.save(student1);
+        Student student1 = new Student();
+        student1.setStudentId("123");
+        student1.setName("María");
+        student1.setLastname("Ramirez");
+
+        studentRepository.save(student1);
+
+
+        //Autor & Book (1)
+        Author author1 = new Author();
+        author1.setName("Michel");
+        author1.setLastName("Foucault");
+        authorRepository.save(author1);
+
+        Book book1 = new Book();
+        book1.setTitle("Desolatia");
+        book1.setEditorial("Amarante");
+        book1.setAuthor(author1);
+        bookRepository.save(book1);
+
+        author1.getBooks().add(book1);
+        authorRepository.save(author1);
+
+        //Autor & Book (2)
+        Author author2 = new Author();
+        author2.setName("Helen");
+        author2.setLastName("Hester");
+        authorRepository.save(author2);
+
+        Book book2 = new Book();
+        book2.setTitle("El mundo de Elea");
+        book2.setEditorial("Martínez Roca");
+        book2.setAuthor(author2);
+        bookRepository.save(book2);
+
+        author2.getBooks().add(book2);
+        authorRepository.save(author2);
+
+        //Autor & Book (3)
+        Author author3 = new Author();
+        author3.setName("Patricia");
+        author3.setLastName("Sadovsky");
+        authorRepository.save(author3);
+
+        Book book3 = new Book();
+        book3.setTitle("Ciencia Políticas");
+        book3.setEditorial("Ariel");
+        book3.setAuthor(author3);
+        bookRepository.save(book3);
+
+        author3.getBooks().add(book3);
+        authorRepository.save(author3);
+
 
         System.out.println("--------- Started BootstrapData ---------");
         System.out.println("Number of Person: " +personRepository.count());
         System.out.println("Number of Animal: " +animalRepository.count());
-//        System.out.println("Number of Student: " +studentReporsitory.count());
+        System.out.println("Number of Student: " +studentRepository.count());
+        System.out.println("Number of Books: " +studentRepository.count());
+        System.out.println("Number of Authors: " +studentRepository.count());
     }
 }
