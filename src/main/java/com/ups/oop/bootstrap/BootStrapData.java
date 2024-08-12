@@ -101,6 +101,13 @@ public class BootStrapData implements CommandLineRunner {
         book1.setAuthor(author1);
         bookRepository.save(book1);
 
+        Book book4 = new Book();
+        book4.setTitle("Los 3 MOsqueteros");
+        book4.setEditorial("S.A Editorial");
+        book4.setAuthor(author1);
+        bookRepository.save(book4);
+
+        author1.getBooks().add(book4);
         author1.getBooks().add(book1);
         authorRepository.save(author1);
 
@@ -139,7 +146,5 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Number of Person: " +personRepository.count());
         System.out.println("Number of Animal: " +animalRepository.count());
         System.out.println("Number of Student: " +studentRepository.count());
-        System.out.println("Number of Books: " +studentRepository.count());
-        System.out.println("Number of Authors: " +studentRepository.count());
     }
 }
