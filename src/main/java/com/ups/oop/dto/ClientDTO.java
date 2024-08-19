@@ -1,4 +1,5 @@
 package com.ups.oop.dto;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,10 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class PersonDTO {
+
+public class ClientDTO {
     private String id;
     private String name;
     private int age;
+    private String ClientCode;
 }

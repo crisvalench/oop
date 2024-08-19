@@ -1,15 +1,12 @@
 package com.ups.oop.service;
 
-import com.ups.oop.dto.PersonDTO;
 import com.ups.oop.dto.StudentDTO;
-import com.ups.oop.entity.Person;
 import com.ups.oop.entity.Student;
 import com.ups.oop.repository.StudentRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.naming.Name;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

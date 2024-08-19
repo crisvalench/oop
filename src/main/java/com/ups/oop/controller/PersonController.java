@@ -1,7 +1,6 @@
 package com.ups.oop.controller;
 
 import com.ups.oop.dto.PersonDTO;
-import com.ups.oop.entity.Person;
 import com.ups.oop.service.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
