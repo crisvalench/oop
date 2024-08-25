@@ -38,14 +38,15 @@
 <br>
 <table>
     <tr>
-        <th>Editorial</th>
         <th>Book</th>
         <th>Author</th>
+        <th>Editorial(s)</th>
+
     </tr>
     <tr th:each="bo: ${books}">
-        <th th:text="${bo.editorial}"></th>
         <th th:text="${bo.title}"></th>
         <th th:text="${bo.author}"></th>
+        <th th:text="${bo.editorials}"></th>
     </tr>
 
 </table>
