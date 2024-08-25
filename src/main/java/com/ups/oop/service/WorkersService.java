@@ -10,19 +10,24 @@ import java.util.List;
 
 @Service
 public class WorkersService {
-        private final WorkerRepository workerRepository;
+    private final WorkerRepository workerRepository;
 
-    public WorkersService( WorkerRepository workerRepository) {
+    public WorkersService(WorkerRepository workerRepository) {
         this.workerRepository = workerRepository;
     }
 
-    public List<WorkerDTO> getWorkers(){
-        Iterable<Worker> workersIterable = workerRepository.findAll();
-        List<WorkerDTO> clientList = new ArrayList<>();
-        for (Worker workers : workersIterable) {
-            WorkerDTO clientDTO = new WorkerDTO(workers.getPersonId(), workers.getName() + " " + workers.getLastname(), workers.getAge(), workers.getWorkerCode());
-            clientList.add(clientDTO);
+    public List<WorkerDTO> getWorkers() {
+        Iterable<Worker> workerIterable = workerRepository.findAll();
+        List<WorkerDTO> workerList = new ArrayList<>();
+        for(Worker worker : workerIterable) {
+            WorkerDTO workerDTO = new WorkerDTO(
+                    worker.getPersonId(),
+                    (worker.getName() + "-" + worker.getLastname()),
+                    worker.getAge(),
+                    worker.getWorkerCode()
+            );
+            workerList.add(workerDTO);
         }
-        return clientList;
+        return workerList;
     }
 }

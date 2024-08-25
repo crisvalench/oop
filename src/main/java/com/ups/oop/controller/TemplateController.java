@@ -40,7 +40,7 @@ public class TemplateController {
 
     @GetMapping("/books")
     public String getBookAndAuthors(Model model){
-        model.addAttribute("books", bookService.getBookAndAuthors());
+        model.addAttribute("books", bookService.getAllBooks());
         return "book/list";
     }
     @GetMapping("/clients")
