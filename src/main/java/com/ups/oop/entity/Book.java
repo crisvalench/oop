@@ -35,5 +35,7 @@ public class Book {
             joinColumns = @JoinColumn(name="book_id"),
             inverseJoinColumns = @JoinColumn(name = "editorial_id")
     )
-    List<Editorial> editorials = new ArrayList<>();
+    private List<Editorial> editorials = new ArrayList<>();
+    @OneToMany(mappedBy = "book")
+    private List<LoanDetail> loanDetails = new ArrayList<>();
 }

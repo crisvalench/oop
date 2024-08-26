@@ -1,13 +1,22 @@
 package com.ups.oop.entity;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 public class Client  extends Person{
     private String clientCode;
+
+    @OneToMany(mappedBy = "client_id")
+    private List<Loan> Loans = new ArrayList<>();
+
 
     public Client() {
         super();
