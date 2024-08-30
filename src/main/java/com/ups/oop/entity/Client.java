@@ -14,7 +14,7 @@ import java.util.List;
 public class Client  extends Person{
     private String clientCode;
 
-    @OneToMany(mappedBy = "client_id")
+    @OneToMany(mappedBy = "client")
     private List<Loan> Loans = new ArrayList<>();
 
 

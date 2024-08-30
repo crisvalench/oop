@@ -1,5 +1,6 @@
 package com.ups.oop.controller;
 
+import com.ups.oop.entity.Loan;
 import com.ups.oop.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +13,17 @@ public class TemplateController {
     private final BookService bookService;
     private final ClientService clientService;
     private final WorkersService workersService;
+    private final LoanService loanService;
+    private final LoanDetailService loanDetailService;
 
-    public TemplateController(PersonService personService, AnimalService animalService, BookService bookService, ClientService clientService, WorkersService workersService) {
+    public TemplateController(PersonService personService, AnimalService animalService, BookService bookService, ClientService clientService, WorkersService workersService, LoanService loanService, LoanDetailService loanDetailService) {
         this.personService = personService;
         this.animalService = animalService;
         this.bookService = bookService;
         this.clientService = clientService;
         this.workersService = workersService;
+        this.loanService = loanService;
+        this.loanDetailService = loanDetailService;
     }
 
     @GetMapping("/template")
@@ -53,5 +58,17 @@ public class TemplateController {
     public String getWorkers(Model model){
         model.addAttribute("workers",  workersService.getWorkers());
         return "workers/list";
+    }
+
+    @GetMapping("/loans")
+    public String getLoans(Model model){
+        model.addAttribute("loans",  loanService.getLoans());
+        return "loan/list";
+    }
+
+    @GetMapping("/loans-details")
+    public String getLoansDetails(Model model){
+        model.addAttribute("loansDetails",  loanDetailService.getLoanDetail());
+        return "loan-details/list";
     }
 }

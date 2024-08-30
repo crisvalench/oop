@@ -236,6 +236,7 @@ public class BootStrapData implements CommandLineRunner {
         loan.setLoanDate(new Date());
         loan.setClient(client);
         loan.setDays(30);
+
         loan.setWorker(worker);
         loanRepository.save(loan);
 
@@ -262,8 +263,8 @@ public class BootStrapData implements CommandLineRunner {
         loanDetailRepository.save(l1);
 
         LoanDetail l2 = new LoanDetail();
-        l1.setLoan(loan);
-        l1.setBook(b2);
+        l2.setLoan(loan);
+        l2.setBook(b2);
         loanDetailRepository.save(l2);
 
         loan.getDetailsList().add(l1);
